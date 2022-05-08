@@ -1,37 +1,100 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import styled from 'styled-components/macro';
-import { DialogOverlay, DialogContent } from '@reach/dialog';
+import React from "react";
+import styled from "styled-components/macro";
+import { DialogOverlay, DialogContent } from "@reach/dialog";
 
-import { QUERIES } from '../../constants';
+import { QUERIES, COLORS } from "../../constants";
 
-import UnstyledButton from '../UnstyledButton';
-import Icon from '../Icon';
-import VisuallyHidden from '../VisuallyHidden';
+import UnstyledButton from "../UnstyledButton";
+import Icon from "../Icon";
+import VisuallyHidden from "../VisuallyHidden";
 
 const MobileMenu = ({ isOpen, onDismiss }) => {
-  if (!isOpen) {
-    return null;
-  }
+	if (!isOpen) {
+		return null;
+	}
 
-  return (
-    <div>
-      <button onClick={onDismiss}>Dismiss menu</button>
-      <nav>
-        <a href="/sale">Sale</a>
-        <a href="/new">New&nbsp;Releases</a>
-        <a href="/men">Men</a>
-        <a href="/women">Women</a>
-        <a href="/kids">Kids</a>
-        <a href="/collections">Collections</a>
-      </nav>
-      <footer>
-        <a href="/terms">Terms and Conditions</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/contact">Contact Us</a>
-      </footer>
-    </div>
-  );
+	return (
+		<Overlay isOpen={isOpen} onDismiss={onDismiss}>
+			<Content>
+				<Button onClick={onDismiss}>Dismiss menu</Button>
+				<Nav>
+					<Link href="/sale">Sale</Link>
+					<Link href="/new">New&nbsp;Releases</Link>
+					<Link href="/men">Men</Link>
+					<Link href="/women">Women</Link>
+					<Link href="/kids">Kids</Link>
+					<Link href="/collections">Collections</Link>
+				</Nav>
+				<Footer>
+					<Link href="/terms">Terms and Conditions</Link>
+					<Link href="/privacy">Privacy Policy</Link>
+					<Link href="/contact">Contact Us</Link>
+				</Footer>
+			</Content>
+		</Overlay>
+	);
 };
+
+const Overlay = styled(DialogOverlay)`
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const Button = styled.button`
+	align-self: flex-end;
+	margin-bottom: 32px;
+	border: none;
+	background-color: ${COLORS.gray[900]};
+	color: #fff;
+	padding: 8px 16px;
+	border-radius: 8px;
+	cursor: pointer;
+`;
+
+const Link = styled.a`
+	text-decoration: none;
+	color: ${COLORS.gray[900]};
+`;
+
+const Content = styled(DialogContent)`
+	background-color: #fff;
+	border-radius: 16px;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  width: clamp(300px, 100%, 600px);
+  margin: 16px;
+`;
+
+const Nav = styled.nav`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 32px;
+`;
+
+const Footer = styled.footer`
+	border-top: 1px solid ${COLORS.gray[300]};
+	padding-top: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  width: 100%;
+
+	& a {
+		&:not:last-of-type {
+			margin-right: 16px;
+		}
+	}
+`;
 
 export default MobileMenu;
