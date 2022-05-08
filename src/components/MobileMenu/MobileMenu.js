@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 
-import { QUERIES, COLORS } from "../../constants";
+import { QUERIES } from "../../constants";
 
 import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
@@ -52,7 +52,7 @@ const Button = styled.button`
 	align-self: flex-end;
 	margin-bottom: 32px;
 	border: none;
-	background-color: ${COLORS.gray[900]};
+	background-color: var(--color-gray-900);
 	color: #fff;
 	padding: 8px 16px;
 	border-radius: 8px;
@@ -61,7 +61,7 @@ const Button = styled.button`
 
 const Link = styled.a`
 	text-decoration: none;
-	color: ${COLORS.gray[900]};
+	color: var(--color-gray-900);
 `;
 
 const Content = styled(DialogContent)`
@@ -71,8 +71,8 @@ const Content = styled(DialogContent)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-  width: clamp(300px, 100%, 600px);
-  margin: 16px;
+	width: clamp(300px, 100%, 600px);
+	margin: 16px;
 `;
 
 const Nav = styled.nav`
@@ -83,12 +83,12 @@ const Nav = styled.nav`
 `;
 
 const Footer = styled.footer`
-	border-top: 1px solid ${COLORS.gray[300]};
+	border-top: 1px solid var(--color-gray-300);
 	padding-top: 16px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-  width: 100%;
+	width: 100%;
 
 	& a {
 		&:not:last-of-type {
